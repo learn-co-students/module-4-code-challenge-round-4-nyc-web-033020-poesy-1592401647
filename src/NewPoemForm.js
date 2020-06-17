@@ -1,6 +1,20 @@
 import React from "react";
 
 class NewPoemForm extends React.Component {
+
+  state = {
+    hidden: 'true',
+    title: '',
+    content: '',
+    author: ''
+  }
+
+  // handleShowForm = (e) => {
+  //   if (this.state.hidden === 'false')
+
+
+  // }
+
   render() {
     return (
       <form className="new-poem-form">
