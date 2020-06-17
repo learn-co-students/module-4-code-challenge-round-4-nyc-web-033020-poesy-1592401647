@@ -28,6 +28,7 @@ class App extends React.Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault()
     const data = {
       'title': e.target.title.value,
       'content': e.target.content.value,
@@ -47,10 +48,6 @@ class App extends React.Component {
         poems: [...this.state.poems, newPoem]
       })
     })
-
-    e.target.title.value = '',
-    e.target.content.value = '',
-    e.target.author.value = ''
   }
 
 
@@ -59,7 +56,9 @@ class App extends React.Component {
       <div className="app">
         <div className="sidebar">
           <button onClick={this.displayForm}>Show/hide new poem form</button>
-          {this.state.display ? <NewPoemForm handleSubmit={this.handleSubmit}/> : this.state.displayForm}
+          { if (this.state.display) {
+             <NewPoemForm handleSubmit={this.handleSubmit} /> 
+          } else (this.state.displayForm)
         </div>
         <PoemsContainer poems={this.state.poems}/>
       </div>
