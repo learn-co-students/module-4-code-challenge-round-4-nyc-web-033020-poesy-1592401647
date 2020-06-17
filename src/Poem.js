@@ -9,7 +9,7 @@ class Poem extends React.Component {
         <p>
           <strong>{this.props.poem.author}</strong>
         </p>
-        <button >Mark as read</button>
+        <button>Mark as read</button>
       </div>
     );
   }
