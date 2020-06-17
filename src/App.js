@@ -5,14 +5,25 @@ import NewPoemForm from "./NewPoemForm";
 
 class App extends React.Component {
 
+  state = {
+    showForm: false
+  }
+
+  handleClick = e => {
+    if (this.state.showForm === false)
+    this.setState({
+      showForm: true
+    })
+  }
+
 
 
   render() {
     return (
       <div className="app">
         <div className="sidebar">
-          <button>Show/hide new poem form</button>
-          {false && <NewPoemForm />}
+          <button onClick={this.handleClick}>Show/hide new poem form</button>
+          {this.state.showForm && <NewPoemForm />}
         </div>
         <PoemsContainer />
       </div>

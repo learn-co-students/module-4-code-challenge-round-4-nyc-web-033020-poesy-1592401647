@@ -27,7 +27,10 @@ class Poem extends React.Component {
         <p>
           <strong>- {this.props.author}</strong>
         </p>
-        <button onClick={this.handleClick}>Mark as read</button>
+        {this.state.isRead === 'false' ? 
+        <button onClick={this.handleClick}>Mark as read</button> 
+        : <button onClick={this.handleClick}>Mark as unread</button> 
+      }
       </div>
     );
   }
