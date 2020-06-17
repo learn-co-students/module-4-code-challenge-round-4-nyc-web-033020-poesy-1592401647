@@ -4,6 +4,26 @@ import PoemsContainer from "./PoemsContainer";
 import NewPoemForm from "./NewPoemForm";
 
 class App extends React.Component {
+  state = {
+    poems: [],
+  }
+
+  setPoems = (data) => {
+    this.setState({
+      poems: data
+    })
+  }
+    componentDidMount(){
+      this.fetchPoems()
+    }
+
+    fetchPoems = () => {
+      fetch('http://localhost:6001/poems')
+      .then(resp => resp.json())
+      .then(data => this.setPoems(data))
+    }
+
+
   render() {
     return (
       <div className="app">
@@ -11,7 +31,10 @@ class App extends React.Component {
           <button>Show/hide new poem form</button>
           {false && <NewPoemForm />}
         </div>
-        <PoemsContainer />
+        <PoemsContainer 
+          poems={this.state.poems}
+        
+        />
       </div>
     );
   }
