@@ -8,7 +8,8 @@ const API_ENDPOINT = `http://localhost:6001/poems`
 class App extends React.Component {
 
   state = {
-    poems: []
+    poems: [],
+    displayForm: false
   }
 
   componentDidMount() {
@@ -19,12 +20,19 @@ class App extends React.Component {
     }) 
   }
 
+  toggleFormDisplay = () => {
+    this.setState({ displayForm: !this.state.displayForm})
+  }
+
   render() {
+    // console.log(this.state)
+
     return (
       <div className="app">
         <div className="sidebar">
-          <button>Show/hide new poem form</button>
-          {false && <NewPoemForm />}
+          <button onClick={this.toggleFormDisplay}>Show/hide new poem form</button>
+          {/* {false && <NewPoemForm />} */}
+          {this.state.displayForm ? <NewPoemForm /> : null}
         </div>
         <PoemsContainer poems={this.state.poems} />
       </div>
