@@ -3,7 +3,7 @@ import "./App.css";
 import PoemsContainer from "./PoemsContainer";
 import NewPoemForm from "./NewPoemForm";
 
-// const API_ENDPOINT = `http://localhost:6001/poems`
+const API_ENDPOINT = `http://localhost:6001/poems`
 
 class App extends React.Component {
 
@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:6001/poems')
+    fetch(API_ENDPOINT)
     .then(res => res.json())
     .then(poemData => {
       this.setState({ poems: poemData })
@@ -46,7 +46,7 @@ class App extends React.Component {
       author: this.state.author
     }
 
-    fetch('http://localhost:6001/poems', {
+    fetch(API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,23 @@ class App extends React.Component {
       .then(newPoem => {
         this.addNewPoem(newPoem)
       })
+      .then( () => this.setState({ title: '', content: '', author: ''}))
   }
+
+  deletePoem = id => {
+    fetch(`${API_ENDPOINT}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(this.setState({
+      poems: this.state.poems.filter(poem => poem.id !== id)
+    }))
+  }
+
 
   render() {
     // console.log(this.state)
@@ -78,7 +94,7 @@ class App extends React.Component {
           addNewPoem={this.addNewPoem} 
           /> : null}
         </div>
-        <PoemsContainer poems={this.state.poems} />
+        <PoemsContainer poems={this.state.poems} deletePoem={this.deletePoem} />
       </div>
     );
   }
