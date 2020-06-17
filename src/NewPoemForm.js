@@ -14,7 +14,16 @@ class NewPoemForm extends React.Component {
   // handleSubmit = event => {
   //   event.preventDefault()
 
-  //   fetch
+  //   fetch(URL, { //how to get access to URL?
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'accept': 'application/json'
+  //     },
+  //     body: JSON.stringify(this.state)
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(newPoem => console.log())
   // }
 
   render() {
