@@ -75,7 +75,8 @@ class App extends React.Component {
           author={this.state.author}
           onChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          addNewPoem={this.addNewPoem} /> : null}
+          addNewPoem={this.addNewPoem} 
+          /> : null}
         </div>
         <PoemsContainer poems={this.state.poems} />
       </div>

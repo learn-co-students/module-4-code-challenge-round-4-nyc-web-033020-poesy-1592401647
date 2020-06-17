@@ -21,7 +21,7 @@ class Poem extends React.Component {
         <p>
           <strong>- By {author}</strong>
         </p>
-    <button onClick={this.toggleRead}>{this.state.read ? 'Mark as unread' : 'Mark as read'}</button>
+        <button onClick={this.toggleRead}>{this.state.read ? 'Mark as unread' : 'Mark as read'}</button>
       </div>
     );
   }
