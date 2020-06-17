@@ -9,7 +9,10 @@ class App extends React.Component {
 
   state = {
     poems: [],
-    displayForm: false
+    displayForm: false,
+    title: '',
+    content: '',
+    author: ''
   }
 
   componentDidMount() {
@@ -24,6 +27,10 @@ class App extends React.Component {
     this.setState({ displayForm: !this.state.displayForm})
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   render() {
     // console.log(this.state)
 
@@ -32,7 +39,12 @@ class App extends React.Component {
         <div className="sidebar">
           <button onClick={this.toggleFormDisplay}>Show/hide new poem form</button>
           {/* {false && <NewPoemForm />} */}
-          {this.state.displayForm ? <NewPoemForm /> : null}
+          {this.state.displayForm ? 
+          <NewPoemForm 
+          title={this.state.title} 
+          content={this.state.content} 
+          author={this.state.author}
+          onChange={this.handleChange} /> : null}
         </div>
         <PoemsContainer poems={this.state.poems} />
       </div>
